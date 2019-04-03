@@ -285,7 +285,8 @@ export default class GooglePlacesAutocomplete extends Component {
       request.open('GET', 'https://maps.googleapis.com/maps/api/place/details/json?fields=name,geometry&' + Qs.stringify({
         key: this.props.query.key,
         placeid: rowData.place_id,
-        language: this.props.query.language
+        language: this.props.query.language,
+        sessionToken: this.props.query.sessionToken
       }));
 
       if (this.props.query.origin !== null) {
@@ -495,7 +496,7 @@ export default class GooglePlacesAutocomplete extends Component {
       if (this.props.preProcess) {
         text = this.props.preProcess(text);
       }
-      request.open('GET', 'https://maps.googleapis.com/maps/api/place/autocomplete/json?&input=' + encodeURIComponent(text) + '&' + Qs.stringify(this.props.query));
+      request.open('GET', 'https://maps.googleapis.com/maps/api/place/autocomplete/json?&input=' + encodeURIComponent(text) + '&' + 'location=53.5444,-113.4909' + '&' + 'radius=100000' + '&' + Qs.stringify(this.props.query));
       if (this.props.query.origin !== null) {
          request.setRequestHeader('Referer', this.props.query.origin)
       }
