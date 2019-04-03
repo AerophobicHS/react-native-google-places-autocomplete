@@ -282,11 +282,10 @@ export default class GooglePlacesAutocomplete extends Component {
         }
       };
 
-      request.open('GET', 'https://maps.googleapis.com/maps/api/place/details/json?' + Qs.stringify({
+      request.open('GET', 'https://maps.googleapis.com/maps/api/place/details/json?fields=name,geometry&' + Qs.stringify({
         key: this.props.query.key,
         placeid: rowData.place_id,
-        language: this.props.query.language,
-        ...this.props.GooglePlacesDetailsQuery,
+        language: this.props.query.language
       }));
 
       if (this.props.query.origin !== null) {
